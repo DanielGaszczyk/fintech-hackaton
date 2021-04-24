@@ -1,6 +1,6 @@
 from enum import Enum
 from config import app, api
-from resources import UserLogin, UserRegister
+from resources import UserLogin, UserRegister, StockData
 
 class Function(Enum):
     TIME_SERIES_INTRADAY = "TIME_SERIES_INTRADAY"
@@ -103,6 +103,7 @@ class AlphaVantageEndpoint:
 
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserRegister, '/register')
+api.add_resource(StockData, '/stockdata')
 
 if __name__ == '__main__':
     # endpoint = AlphaVantageEndpoint(keywords="FAA", time_period="50")
