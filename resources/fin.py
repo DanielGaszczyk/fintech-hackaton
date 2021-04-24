@@ -1,7 +1,6 @@
-
 import numpy as np
+import random
 from scipy.stats import norm,lognorm
-
 
 def ri_fa (col): 
     def ri (Pt, Ptm):
@@ -15,6 +14,17 @@ def ret(AT_CLOSE):
 # mean return
 def mean_ret(ret):
     return [np.mean(x) for x in ret]
+
+
+# sigma of stocks
+def sigma_of_stocks(proportion, var_cov):
+    return np.sqrt(np.matmul(np.matmul(proportion.transpose(), var_cov ), proportion))
+
+
+# mean of stocks
+def mean_of_stocks(proportion, mean):
+    return np.matmul(np.array(mean).transpose(), proportion)
+
 
 # matrix of excess returns
 def mer(mean_ret, returns):
@@ -32,8 +42,12 @@ def corrmat (A):
 def norm_ret(initial, mean, sigma, size = 100000):
     return np.random.normal((1+mean)* initial, sigma * initial, size)
 
+# The probability that the end-of-year portfolio value is less than X is about value_percent%
 def value_percent (normal_dist, value):
-    return len([x for x in normal_dist if x < value])/len(normal_dist)
+    return len([x for x in normal_dist if x < value])/len(normal_dist) *100
+
+
+# Value at risk 
 
 # VaR at p% normal
 def var_normal(p, initial, mean, sigma):
@@ -47,3 +61,8 @@ def var_lognormal(p, initial, mean, sigma, time = 1):
 # Future value with annual deposits
 def fvad (c0 , r, t):
     return(c0 * (1 - (1+r)**(t+1))/ (1  - (1 + r)) - c0)
+
+
+# Stock simulation
+def simulate_stock(S0, sigma, mu, time0):
+    return [ S0 * np.exp(mu*x + sigma*np.random.normal(mu, sigma) * np.sqrt(x)) for x in np.linspace(0,time0,time0+1) ]
