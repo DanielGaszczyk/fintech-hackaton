@@ -45,7 +45,6 @@ def corrmat(A):
     return np.corrcoef(A)
 
 
-<<<<<<< HEAD
 # User portfolio sigma
 def user_sigma(proportions, AT_CLOSE):
     ret = rett(AT_CLOSE)
@@ -70,8 +69,6 @@ def user_corr_mat(AT_CLOSE):
     return corrmat (A)
 
 
-=======
->>>>>>> 1df8ebc9fbfbd566c00ef6e3e161556890c9c1ce
 # normall distribution
 def norm_ret(initial, mean, sigma, size=100000):
     return np.random.normal((1 + mean) * initial, sigma * initial, size)
