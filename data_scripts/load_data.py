@@ -1,6 +1,7 @@
 import csv
 import os
 from models import Stock, StockData
+from config import db
 
 path = '/home/szymon/Pulpit/stockdata/'
 
@@ -16,5 +17,6 @@ def load_file(name):
         stock_data.save_to_db()
 
 
+db.create_all()
 for filename in os.listdir(path):
     load_file(filename)

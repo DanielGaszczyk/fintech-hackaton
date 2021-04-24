@@ -1,6 +1,6 @@
 from enum import Enum
-from config import db
-
+from config import app, api
+from resources import UserLogin, UserRegister
 
 class Function(Enum):
     TIME_SERIES_INTRADAY = "TIME_SERIES_INTRADAY"
@@ -101,12 +101,15 @@ class AlphaVantageEndpoint:
         return self.base_link + 'apikey=' + self.api_key
 
 
+api.add_resource(UserLogin, '/login')
+api.add_resource(UserRegister, '/register')
+
 if __name__ == '__main__':
     # endpoint = AlphaVantageEndpoint(keywords="FAA", time_period="50")
     # endpoint = endpoint.add_function_to_link().add_symbol_to_link().add_output_size().add_interval_to_link().get_link()
     # response = json.loads(urllib.request.urlopen(endpoint).read().decode("utf-8").replace("'", '"'))
     # print(response)
-    db.create_all()
+    app.run()
 
 
 
