@@ -1,6 +1,6 @@
 from enum import Enum
 from config import db
-from StockData import Stock, StockData
+
 
 class Function(Enum):
     TIME_SERIES_INTRADAY = "TIME_SERIES_INTRADAY"

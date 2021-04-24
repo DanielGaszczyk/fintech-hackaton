@@ -1,6 +1,6 @@
 import csv
 import os
-from StockData import Stock, StockData
+from models import Stock, StockData
 
 path = '/home/szymon/Pulpit/stockdata/'
 
