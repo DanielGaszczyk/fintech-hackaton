@@ -1,5 +1,7 @@
 
 import numpy as np
+from scipy.stats import norm,lognorm
+
 
 def ri_fa (col): 
     def ri (Pt, Ptm):
@@ -26,3 +28,22 @@ def vcm(A, ret):
 def corrmat (A):
     return np.corrcoef(A)
 
+# normall distribution
+def norm_ret(initial, mean, sigma, size = 100000):
+    return np.random.normal((1+mean)* initial, sigma * initial, size)
+
+def value_percent (normal_dist, value):
+    return len([x for x in normal_dist if x < value])/len(normal_dist)
+
+# VaR at p% normal
+def var_normal(p, initial, mean, sigma):
+    return initial - norm.ppf(p, loc=(1+mean)* initial, scale=sigma * initial)
+
+# VaR at p% normal
+def var_lognormal(p, initial, mean, sigma, time = 1):
+    return initial - lognorm.ppf(p, sigma * np.sqrt(time), loc=0, scale=np.exp(np.log(initial) + (mean - (sigma**2)/2) *time))
+
+
+# Future value with annual deposits
+def fvad (c0 , r, t):
+    return(c0 * (1 - (1+r)**(t+1))/ (1  - (1 + r)) - c0)
