@@ -8,7 +8,7 @@ def ri_fa (col):
     return [ ri (col[t], col[t+1]) for t,x in enumerate(col[0:len(col)-1]) ]
     
 # returns of stock
-def ret(AT_CLOSE):
+def rett(AT_CLOSE):
     return [ri_fa(x) for x in AT_CLOSE.values.transpose()]
 
 # mean return
@@ -37,6 +37,31 @@ def vcm(A, ret):
 # correlation matrix
 def corrmat (A):
     return np.corrcoef(A)
+
+
+# User portfolio sigma
+def user_sigma(proportions, AT_CLOSE):
+    ret = rett(AT_CLOSE)
+    mean = mean_ret(ret)
+    A = mer(mean, ret)
+    var_cov =  vcm(A, ret)
+
+    return sigma_of_stocks(proportions, var_cov)
+
+# User portfolio mean 
+def user_mean(proportions, AT_CLOSE):
+    ret = rett(AT_CLOSE)
+    mean = mean_ret(ret)
+
+    return mean_of_stocks(proportions, mean)
+
+# User portfolio corr matrix
+def user_corr_mat(AT_CLOSE):
+    ret = rett(AT_CLOSE)
+    mean = mean_ret(ret)
+    A = mer(mean, ret)
+    return corrmat (A)
+
 
 # normall distribution
 def norm_ret(initial, mean, sigma, size = 100000):
