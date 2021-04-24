@@ -160,5 +160,5 @@ class FunctionVarNormal(Resource):
 class FunctionVarLog(Resource):
     def post(self):
         data = simulate_stock_parser.parse_args()
-        result = var_normal(data.p, data.initial, data.mu, data.time)
+        result = var_lognormal(data.p, data.initial, data.mu, data.sigma, data.time)
         return {'value': result}, 200
