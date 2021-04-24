@@ -9,7 +9,7 @@ def ri_fa (col):
     
 # returns of stock
 def ret(AT_CLOSE):
-     [ri_fa(x) for x in AT_CLOSE.values.transpose()]
+    return [ri_fa(x) for x in AT_CLOSE.values.transpose()]
 
 # mean return
 def mean_ret(ret):
