@@ -64,5 +64,11 @@ def fvad (c0 , r, t):
 
 
 # Stock simulation
+def sim(S0, sigma, mu, time0):
+    return S0 * np.exp(mu*time0 + sigma*np.random.normal(0, 1) * np.sqrt(time0)) 
+ 
 def simulate_stock(S0, sigma, mu, time0):
-    return [ S0 * np.exp(mu*x + sigma*np.random.normal(mu, sigma) * np.sqrt(x)) for x in np.linspace(0,time0,time0+1) ]
+    x = [S0]
+    for i in range(time0-1):
+        x.append(sim(x[i], sigma, mu, (1/time0)))
+    return x[1:]
