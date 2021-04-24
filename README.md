@@ -1,5 +1,5 @@
-#SenZen  
-##This repository contains back-end part of SenZen application for TH.0 FinTech Hackathon.  
+# SenZen  
+## This repository contains back-end part of SenZen application for TH.0 FinTech Hackathon.  
 We use development environment based on Heroku, with address floating-woodland-93585.herokuapp.com
 
 Available endpoints:  
