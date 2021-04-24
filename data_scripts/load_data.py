@@ -3,7 +3,7 @@ import os
 from models import Stock, StockData, User, BoughtStocks
 from config import db
 
-path = '/home/szymon/Pulpit/stockdata/'
+path = '/home/szymon/fintech-hackaton/csv_data/'
 
 
 db.create_all()

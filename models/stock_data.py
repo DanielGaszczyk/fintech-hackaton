@@ -24,6 +24,23 @@ class StockData(db.Model):
         self.adj_close = adj_close
         self.volume = volume
 
+    def json(self):
+        return {
+            "id": self.id,
+            "stock_id": self.stock_id,
+            "date": self.date,
+            "open": self.open,
+            "high": self.high,
+            "low": self.low,
+            "close": self.close,
+            "adj_close": self.adj_close,
+            "volume": self.volume
+        }
+
+    @classmethod
+    def get_all_data(cls):
+        return cls.query.all()
+
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
